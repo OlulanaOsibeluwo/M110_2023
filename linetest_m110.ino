@@ -42,19 +42,22 @@ void loop() {
   int startFlag = 0;
 
   int v_leftVal = digitalRead(v_LeftLineSensorPin); 
-  Serial.print(v_leftVal);
+  Serial.println(v_leftVal);
   int leftVal  = digitalRead(LeftLineSensorPin);
-  Serial.print(leftVal);
+  Serial.println(leftVal);
   int rightVal = digitalRead(RightLineSensorPin);
-  Serial.print(rightVal);
+  Serial.println(rightVal);
   int v_rightVal = digitalRead(v_RightLineSensorPin);
-  Serial.print(v_rightVal);
+  Serial.println(v_rightVal,"\n");
 
   if (v_leftVal == 0 && leftVal == 0 && rightVal == 0 && v_rightVal == 0){
-    /* GO FORWARD */}
+    /* GO FORWARD */
+    /*left->run(BACKWARD);*/
+    /*right->run(BACKWARD);*/
+    Serial.print("BLACK");}
   if (v_leftVal == 1 && leftVal == 1 && rightVal == 1 && v_rightVal == 1){
-    startFlag = 1;
-    Serial.print(startFlag);}
+    startFlag = 300;
+    Serial.print(startFlag,"WHITE-Junction2");}
   v_leftVal = digitalRead(v_LeftLineSensorPin); 
   Serial.print(v_leftVal);
   leftVal  = digitalRead(LeftLineSensorPin);
