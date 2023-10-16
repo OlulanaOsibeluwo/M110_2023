@@ -77,7 +77,7 @@ void junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSen
 
     int junction_num;
 
-    ||| option 1 |||
+    /*option 1*/
     int light_sequence[4] = {v_left_lineSensor, left_lineSensor, right_lineSensor, v_right_lineSensor};
 
     if (light_sequence[0] == 0 && light_sequence[1] == 0 && light_sequence[2] == 0 && light_sequence[3] == 1) {
@@ -94,7 +94,7 @@ void junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSen
         junction_num = 6;
     }
 
-   ||| option 2 |||
+   /*option 2*/
     int light_sequence = v_left_lineSensor * 1000 + left_lineSensor * 100 + right_lineSensor * 10 + v_right_lineSensor;
     
     if (light_sequence == 0) {
@@ -120,9 +120,9 @@ void position(int prev_junction_num, int prev_turn, int junction_type){
   // prev_turn: left = 0, right = 1, straight = 2
 
   // initially bot moves from start box to cross junction
-  prev_junction_num = 0 
-  prev turn = 2
-  junction_type = 4
+  prev_junction_num = 0; 
+  prev turn = 2;
+  junction_type = 4;
   
   position = 6
 
@@ -282,7 +282,7 @@ void loop {
   //* turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 4
-  position = 6
+  position = 6;
   block_found_status = block_detector(/*insert params*/):
   }
 
