@@ -34,6 +34,13 @@ void setup() {
 
   right->setSpeed(225);
   right->run(RELEASE);
+
+  left->run(BACKWARD);
+  right->run(BACKWARD);
+  delay(2000);
+  
+
+  Serial.println("Delay Over");
 }
 
 void loop() {
@@ -42,40 +49,35 @@ void loop() {
   int startFlag = 0;
 
   int v_leftVal = digitalRead(v_LeftLineSensorPin); 
-  Serial.println(v_leftVal);
+  Serial.print(v_leftVal);
   int leftVal  = digitalRead(LeftLineSensorPin);
-  Serial.println(leftVal);
+  Serial.print(leftVal);
   int rightVal = digitalRead(RightLineSensorPin);
-  Serial.println(rightVal);
+  Serial.print(rightVal);
   int v_rightVal = digitalRead(v_RightLineSensorPin);
   Serial.println(v_rightVal);
 
-  if (v_leftVal == 0 && leftVal == 0 && rightVal == 0 && v_rightVal == 0){
+  if (v_leftVal == 0 && leftVal == 1 && rightVal == 1 && v_rightVal == 0){
     /* GO FORWARD */
-    left->run(FORWARD);
-    right->run(FORWARD);
-    Serial.println("BLACK");}
-  if (v_leftVal == 1 && leftVal == 1 && rightVal == 1 && v_rightVal == 1){
+    //left->run(FORWARD);
+    //right->run(FORWARD);
+    left->run(BACKWARD);
+    right->run(BACKWARD);
+
+    //Serial.println("BLACK2");}
+  if (v_leftVal == 1 && leftVal == 1 && rightVal == 1 && v_rightVal == 1 ){
     startFlag = 300;
     Serial.print(startFlag,"WHITE-Junction2");
     junction_count++;
-    Serial.print("Junction Count:");
-    Serial.print(junction_count);
+    //Serial.print("Junction Count:");
+    //Serial.print(junction_count);
     left->run(FORWARD);
     right->run(BACKWARD);}
-  if ((v_leftVal == 1 && leftVal == 1) || (rightVal == 1 && v_rightVal == 1)){
+  if ((v_leftVal == 0 && (leftVal == 1 || rightVal == 1) && v_rightVal == 0)){
     junction_count++;
-    Serial.print("Junction Count");
-    Serial.print(junction_count);
+    //Serial.print("Junction Count");
+    //Serial.print(junction_count);
     left->run(FORWARD);
     right->run(BACKWARD);
   }
-  v_leftVal = digitalRead(v_LeftLineSensorPin); 
-  //Serial.print(v_leftVal);
-  leftVal  = digitalRead(LeftLineSensorPin);
-  //Serial.print(leftVal);
-  rightVal = digitalRead(RightLineSensorPin);
-  //Serial.print(rightVal);
-  v_rightVal = digitalRead(v_RightLineSensorPin);
-  //Serial.print(v_rightVal);
-}
+}}
