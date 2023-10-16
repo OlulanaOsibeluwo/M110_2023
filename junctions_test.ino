@@ -174,109 +174,109 @@ void loop {
   // from starting position move forwards
   int junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 4
   //update position
-  position = 6
+  position = 6;
   block_found_status = block_detector(/*insert params*/):
 
   //turn right
   turn(1);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 7
+  position = 7;
   block_found_status = block_detector(/*insert params*/):
 
   //*go straight
   turn(0);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 3
-  position = 8
+  position = 8;
   block_found_status = block_detector(/*insert params*/):
 
   //*turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 2
-  position = 9
+  position = 9;
   block_found_status = block_detector(/*insert params*/):
 
   //*turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 10
+  position = 10;
   block_found_status = block_detector(/*insert params*/):
 
   //*go straight
   turn(0);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 11
+  position = 11;
   block_found_status = block_detector(/*insert params*/):
 
   // *go straight
   turn(0);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 12
+  position = 12;
   block_found_status = block_detector(/*insert params*/):
 
   // *go straight
   turn(0);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 3
-  position = 13
+  position = 13;
   block_found_status = block_detector(/*insert params*/):
 
   // *turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 4
+  position = 4;
   block_found_status = block_detector(/*insert params*/):
 
   // *turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 5
+  position = 5;
   block_found_status = block_detector(/*insert params*/):
 
   // *go straight
   turn(0);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 4
-  position = 6
+  position = 6;
   block_found_status = block_detector(/*insert params*/):
 
   //* turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 3
-  position = 11
+  position = 11;
   block_found_status = block_detector(/*insert params*/):
 
   //* turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 12
+  position = 12;
   block_found_status = block_detector(/*insert params*/):
 
   //* turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 3
-  position = 5
+  position = 5;
   block_found_status = block_detector(/*insert params*/):
 
   //* turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 4
-  position = 6
+  position = 6;
   block_found_status = block_detector(/*insert params*/):
 
   // * go straight
   turn(0);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 6
-  position = 7
+  position = 7;
   block_found_status = block_detector(/*insert params*/):
 
   //* turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 3
-  position = 10
+  position = 10;
   block_found_status = block_detector(/*insert params*/):
 
   //* turn left
   turn(2);
   junction_type = junction_type(int v_left_lineSensor, int left_lineSensor, int right_lineSensor, int v_right_lineSensor); // should give 3
-  position = 11
+  position = 11;
   block_found_status = block_detector(/*insert params*/):
 
   //* turn left
