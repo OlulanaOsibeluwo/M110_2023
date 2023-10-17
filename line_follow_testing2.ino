@@ -22,11 +22,20 @@ void setup() {
   pinMode(RightLineSensorPin,INPUT);
   pinMode(v_RightLineSensorPin,INPUT);
 
+  if (!AFMS.begin()) {         // create with the default frequency 1.6KHz
+  // if (!AFMS.begin(1000)) {  // OR with a different frequency, say 1KHz
+    Serial.println("Could not find Motor Shield. Check wiring.");
+    while (1);
+  }
+
+  Serial.println("Motor Shield found.");
+
   
   //Setting speed for left and right motors
   left->setSpeed(225);
 
   right->setSpeed(225);
+
 
 }
 
