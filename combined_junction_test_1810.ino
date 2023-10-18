@@ -164,7 +164,7 @@ void loop() {
         }
 
      if(junction_count == 7){
-       stop()
+       stop();
       if(blockType){
         //GO TO RED
         //RIGHT
@@ -266,4 +266,4 @@ void loop() {
   }
   // junctions end
 
-}
+}}}
