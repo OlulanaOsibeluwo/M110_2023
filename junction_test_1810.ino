@@ -5,10 +5,10 @@ Adafruit_DCMotor *left = AFMS.getMotor(3);
 Adafruit_DCMotor *right = AFMS.getMotor(4);
 
 //linesensors pins
-int v_LeftLineSensorPin = 3; 
-int LeftLineSensorPin = 4;
-int RightLineSensorPin = 5; 
-int v_RightLineSensorPin = 6;
+int v_LeftLineSensorPin = 2; 
+int LeftLineSensorPin = 3;
+int RightLineSensorPin = 4; 
+int v_RightLineSensorPin = 5;
 
 
 void setup() {
@@ -42,12 +42,12 @@ void setup() {
 }
 
 //junction number variable
-int junction_num;
+int junction_num = 0;
 int junction_count = 0;
 int journey_num = 1;
 
 //block type variable
-bool blockType;
+bool blockType = true;
 
 void loop() {
 
@@ -62,7 +62,7 @@ void loop() {
 
   //either robot has slanted or has met a junction
   if (!(v_leftVal == 0 && leftVal == 1 && rightVal == 1 && v_rightVal == 0)){
-    Serial.println("AT JUNCTION:");
+    Serial.print("AT JUNCTION:");
     Serial.print(junction_num);
     junction_count++;
   // forward movement start
@@ -75,6 +75,8 @@ void loop() {
     if (v_leftVal == 0 && leftVal == 1 && rightVal == 1 && v_rightVal == 0) {
       return
       Serial.println("RETURNED TO LINE");
+      left->run(BACKWARD);
+      right->run(BACKWARD);
     }}
 
   // slant right
@@ -84,6 +86,8 @@ void loop() {
     right->run(FORWARD);
     // straightened
     if (v_leftVal == 0 && leftVal == 1 && rightVal == 1 && v_rightVal == 0) {
+      left->run(BACKWARD);
+      right->run(BACKWARD);
       return;
     }}
   // forward movement end
@@ -169,51 +173,57 @@ void loop() {
       if (junction_count == 8){
         left->run(FORWARD);
         right->run(BACKWARD);
-      }
-
+        //DEPOSIT BLOCK 
+        //REVERSE BACK ONTO LINE
+      }}
+    journey_num++;
+    junction_count = 0;
     }
-  }
+    if (journey_num == 3){
+      Serial.println("We are at 3rd stage");
+      }
+  
   
   //junctions start
   if (v_leftVal == 0 && leftVal == 0 && rightVal == 0 && v_rightVal == 1){
     junction_num = 1;
-    left->run(BRAKE);
-    right->run(BRAKE);
+    left->run(RELEASE);
+    right->run(RELEASE);
     Serial.print("robot is at junction ");
     Serial.println(junction_num);
   }
   else if (v_leftVal == 1 && leftVal == 0 && rightVal == 0 && v_rightVal == 0){
     junction_num = 2;
-    left->run(BRAKE);
-    right->run(BRAKE);
+    left->run(RELEASE);
+    right->run(RELEASE);
     Serial.print("robot is at junction ");
     Serial.println(junction_num);
   }
   else if (v_leftVal == 1 && leftVal == 0 && rightVal == 0 && v_rightVal == 1){
     junction_num = 3;
-    left->run(BRAKE);
-    right->run(BRAKE);
+    left->run(RELEASE);
+    right->run(RELEASE);
     Serial.print("robot is at junction ");
     Serial.println(junction_num);
   }
   else if (v_leftVal == 1 && leftVal == 1 && rightVal == 1 && v_rightVal == 1){
     junction_num = 4;
-    left->run(BRAKE);
-    right->run(BRAKE);
+    left->run(RELEASE);
+    right->run(RELEASE);
     Serial.print("robot is at junction ");
     Serial.println(junction_num);
   }
   else if (v_leftVal == 0 && leftVal == 1 && rightVal == 1 && v_rightVal == 1){
     junction_num = 5;
-    left->run(BRAKE);
-    right->run(BRAKE);
+    left->run(RELEASE);
+    right->run(RELEASE);
     Serial.print("robot is at junction ");
     Serial.println(junction_num);
   }
   else if (v_leftVal == 1 && leftVal == 1 && rightVal == 1 && v_rightVal == 0){
     junction_num = 6;
-    left->run(BRAKE);
-    right->run(BRAKE);
+    left->run(RELEASE);
+    right->run(RELEASE);
     Serial.print("robot is at junction ");
     Serial.println(junction_num);
   }
