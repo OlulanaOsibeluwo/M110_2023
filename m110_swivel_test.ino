@@ -17,16 +17,16 @@ if (!AFMS.begin()) {         // create with the default frequency 1.6KHz
   Serial.println("Motor Shield found.");
 
   left->setSpeed(225);
-  left->run(RELEASE);
-
   right->setSpeed(225);
+  
+  left->run(RELEASE);
   right->run(RELEASE);
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  do {
+  
     //Swivel 90deg ACW
     left->run(BACKWARD);
     right->run(FORWARD);
@@ -34,8 +34,8 @@ void loop() {
     //Swivel 180 deg CW
     left->run(FORWARD);
     right->run(BACKWARD);
-    delay(1000);
-    //if ultrasound detects block, stop at the angle and go straight
+    delay(3000);
+    //if line of sight sensor detects block, stop at the angle and go straight
     /*if(){
       blockFound = true;}
   }while(!blockFound);*/
