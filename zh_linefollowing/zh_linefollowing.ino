@@ -4,16 +4,37 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor *left = AFMS.getMotor(3);
 Adafruit_DCMotor *right = AFMS.getMotor(4);
 
-//linesensors pins GET RID OF THIS
-// int v_LeftLineSensorPin = 2; 
-// int LeftLineSensorPin = 3;
-// int RightLineSensorPin = 4; 
-// int v_RightLineSensorPin = 5;
+// Ultrasound
+#define MAX_RANG (520)//the max measurement value of the module is 520cm(a little bit longer
+than effective max range)
+#define ADC_SOLUTION (1023.0)//ADC accuracy of Arduino UNO is 10bit
+int sensityPin = A2; // select the input pin
+
+#include "Arduino.h"
+#include "Wire.h"
+#include "DFRobot_VL53L0X.h"
+DFRobot_VL53L0X sensor;
+
+/*
+PINS list:
+
+int v_LeftLineSensorPin = 2; 
+int LeftLineSensorPin = 3;
+int RightLineSensorPin = 4; 
+int v_RightLineSensorPin = 5;
+int greenLEDPin = 7;
+int redLEDPin = 8;
+int amberLEDPin = 9;
+int buttonPin = 10;
+
+*/
 
 bool Lmotor_fw, Rmotor_fw = false;
 int Lmotor_speed, Rmotor_speed = 0; //is there a better way to do this?? without the global vars
 int currentJunction = 0;
-
+float dist_t, sensity_t;
+bool block_found;
+int block_density = 0; // 0: low density, 1: high density
 
 
 void light_sequence(int &v_leftVal, int &leftVal, int &rightVal, int &v_rightVal) {
@@ -134,12 +155,17 @@ void stop(){
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  // Serial.begin(115200); // line sensor requires a higher BAUD RATE
 
   //Pins for Line Sensors 
   pinMode(2,INPUT);
   pinMode(3,INPUT);
   pinMode(4,INPUT);
   pinMode(5,INPUT);
+
+  //Pins for LEDs
+  pinMode(7, OUTPUT); // green LED
+  pinMode(8, OUTPUT); // red LED
 
   if (!AFMS.begin()) {         // create with the default frequency 1.6KHz
   // if (!AFMS.begin(1000)) {  // OR with a different frequency, say 1KHz
@@ -153,7 +179,15 @@ void setup() {
   // left_motor(200, 1);
   // right_motor(200, 1);
 
-
+  //setting up for laser range finder
+  //join i2c bus (address optional for master)
+  Wire.begin();
+  //Set I2C sub-device address
+  sensor.begin(0x50);
+  //Set to Back-to-back mode and high precision mode
+  sensor.setMode(sensor.eContinuous,sensor.eHigh);
+  //Laser rangefinder begins to work
+  sensor.start();
 
   delay(2000);
   Serial.println("kk here we go");

@@ -78,3 +78,17 @@ void junctionHandler(){
 
 //reverse junction handler(), uturn, decrement currentJunction, turn opposite way, etc back to start!
 //then block delivery functionality
+
+void path_red {
+  // top lane
+  // 9-10-11-12-13-4-2
+  // bottom lane
+  // 
+}
+
+void coordinates {
+  // int x = 0;
+  // int y = 0;
+
+  
+}
