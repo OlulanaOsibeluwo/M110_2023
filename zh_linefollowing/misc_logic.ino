@@ -1,21 +1,13 @@
 // high density
-void red_LED(int switch) {
+void red_LED(char PinStatus) {
   // LOW = on = 1,  HIGH = off, = 0
-  if (switch == 1) {
-  digitalWrite(8, LOW); 
-  } else {
-  digitalWrite(8, HIGH); 
-  }
+  digitalWrite(10, (PinStatus == 'LOW') ? LOW : HIGH);
 }
 
-// low density
-void green_LED(int switch){
+// high density
+void green_LED(char PinStatus) {
   // LOW = on = 1,  HIGH = off, = 0
-  if (switch == 1) {
-  digitalWrite(7, LOW); 
-  } else {
-  digitalWrite(7, HIGH); 
-  }
+  digitalWrite(9, (PinStatus == 'LOW') ? LOW : HIGH);
 }
 
 void ultrasound() {
@@ -30,12 +22,12 @@ void ultrasound() {
   int benchmark = 70 ; // plug in number
   if (dist_t <= benchmark ){
     block_density = 0;
-    Serial.print("low density foam");
-    green_LED(1); //switch on green LED
+    Serial.print("low density foam ");
+    green_LED("LOW"); //switch on green LED
   } else {
     block_density = 1;
-    Serial.print("high density foam");
-    red_LED(1); //switch on red LED
+    Serial.print("high density foam ");
+    red_LED("LOW"); //switch on red LED
   }
 }
 
@@ -57,7 +49,7 @@ void laser_p1() {
 
   if (distance < threshold_distance) {
     block_ahead = true;
-    Serial.print("block ahead")
+    Serial.print("block ahead");
   } else {
     // nothing
   }
@@ -108,26 +100,24 @@ void setup {
   int x = 0;
   int y = 0;
   */
-void junctionHandler_V2(){
+// void junctionHandler_V2(){
 
-  bool block_met = false;
+//   bool block_met = false;
 
-  // first junction at start box
-  // initializing coordinates
-  int x = 0;
-  int y = 0;
+//   // first junction at start box
+//   // initializing coordinates
+//   int x = 0;
+//   int y = 0;
 
-  // bottom quarter sweep
-  go_straight();
+//   // bottom quarter sweep
+//   go_straight();
 
-  // Read sensor values
-  light_sequence(v_leftVal, leftVal, rightVal, v_rightVal);
+//   // Read sensor values
+//   light_sequence(v_leftVal, leftVal, rightVal, v_rightVal);
 
-  if (v_leftVal == 1||v_rightVal == 1){
-  //junction met pog
-
-
-
+//   if (v_leftVal == 1||v_rightVal == 1){
+//   //junction met pog
+  
 
 
-}
+// }

@@ -5,8 +5,7 @@ Adafruit_DCMotor *left = AFMS.getMotor(3);
 Adafruit_DCMotor *right = AFMS.getMotor(4);
 
 // Ultrasound
-#define MAX_RANG (520)//the max measurement value of the module is 520cm(a little bit longer
-than effective max range)
+#define MAX_RANG (520)//the max measurement value of the module is 520cm(a little bit longer than effective max range)
 #define ADC_SOLUTION (1023.0)//ADC accuracy of Arduino UNO is 10bit
 int sensityPin = A2; // select the input pin
 
@@ -193,39 +192,60 @@ void setup() {
   Serial.println("kk here we go");
 }
 
-void loop(){
-// Variables to store sensor values
-int v_leftVal, leftVal, rightVal, v_rightVal;
+// void loop(){
+// // Variables to store sensor values
+// int v_leftVal, leftVal, rightVal, v_rightVal;
  
-                                  // Read sensor values
-light_sequence(v_leftVal, leftVal, rightVal, v_rightVal);
+//                                   // Read sensor values
+// light_sequence(v_leftVal, leftVal, rightVal, v_rightVal);
 
-if (v_leftVal == 0 && leftVal == 1 && rightVal == 1 && v_rightVal == 0) {
-    // Forward motion
-  go_straight();
+// if (v_leftVal == 0 && leftVal == 1 && rightVal == 1 && v_rightVal == 0) {
+//     // Forward motion
+//   go_straight();
   
+//   }
+// else if (v_leftVal == 0 && leftVal == 0 && rightVal == 0 && v_rightVal == 0) { //check whether going off lines is a problem
+//     go_straight();
+//   }
+
+// else if (v_leftVal == 0 && leftVal == 0 && rightVal == 1 && v_rightVal == 0){
+//   //adjust to the right
+//   slant_right();
+//   }
+
+// else if (v_leftVal == 0 && leftVal == 1 && rightVal == 0 && v_rightVal == 0) {
+//   //adjust to the left
+//   slant_left();
+//   }
+
+
+// else if (v_leftVal == 1||v_rightVal == 1){
+//   //junction met pog
+
+//   junctionHandler();
+
+// }
+
+
+// }
+
+void loop() {
+  sensity_t = analogRead(sensityPin);
+  // turn the ledPin on
+  dist_t = sensity_t * MAX_RANG / ADC_SOLUTION;//
+  Serial.print(dist_t,0);
+  Serial.println("cm");
+  delay(500);
+
+  // 0: low density, 1: high density
+  int benchmark = 70 ; // plug in number
+  if (dist_t <= benchmark ){
+    block_density = 0;
+    Serial.print("low density foam");
+    green_LED("LOW"); //switch on green LED
+  } else {
+    block_density = 1;
+    Serial.print("high density foam");
+    red_LED("LOW"); //switch on red LED
   }
-else if (v_leftVal == 0 && leftVal == 0 && rightVal == 0 && v_rightVal == 0) { //check whether going off lines is a problem
-    go_straight();
-  }
-
-else if (v_leftVal == 0 && leftVal == 0 && rightVal == 1 && v_rightVal == 0){
-  //adjust to the right
-  slant_right();
-  }
-
-else if (v_leftVal == 0 && leftVal == 1 && rightVal == 0 && v_rightVal == 0) {
-  //adjust to the left
-  slant_left();
-  }
-
-
-else if (v_leftVal == 1||v_rightVal == 1){
-  //junction met pog
-
-  junctionHandler();
-
-}
-
-
 }
