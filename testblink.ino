@@ -12,7 +12,6 @@ void blink() {
 Ticker timer4(blink, 500); // changing led every 500ms
 
 
-
 void setup() {
   pinMode(8, OUTPUT);
   
@@ -33,8 +32,12 @@ void setup() {
   }
 
 void loop() {
-  timer4.start();
+  
+  bonk = 1;
 
+  if (bonk ==1){
+    timer4.start();
+  }
   while (bonk == 1){
     Serial.print("it better still b blinking...");
   }
